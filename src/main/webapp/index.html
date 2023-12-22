@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="bootstrap.css">
+    </head>
+    <body>
+     
+    <nav class="navbar" style="background-color: #e3f2fd;">
+<!--        標題跟搜尋-->
+          <h1><a class="navbar-brand">摩爾模型</a></h1>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+<!--          登入與購物車-->
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">ShoppingCar</a>
+              </li>
+            </ul>
+    </nav>
+<!--        商品陳列-->
+        <div>   
+            <a href="ProductList.jsp?pl=1">Classic Cars 經典汽車模型</a><br/>
+            <a href="ProductList.jsp?pl=2">Motorcycle 重機模型</a><br/>
+            <a href="ProductList.jsp?pl=3">Vintage Cars 老爺車</a><br/>
+            <a href="ProductList.jsp?pl=4">Trucks and Buses 卡車</a><br/>
+            <a href="ProductList.jsp?pl=5">Trains 火車</a><br/>
+            <a href="ProductList.jsp?pl=6">Ships 船</a><br/>
+            <a href="ProductList.jsp?pl=7">Planes 飛機</a><br/>
+        </div>
+        
+        <script link="bootstrap.bundle.js" ></script>
+        
+    </body>
+</html>
