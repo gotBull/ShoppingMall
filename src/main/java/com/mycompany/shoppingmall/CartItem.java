@@ -8,6 +8,100 @@ package com.mycompany.shoppingmall;
  *
  * @author student
  */
-public class CartItem {
+import java.util.HashMap;
+import java.util.Map;
+public class CartItem{
+    private String productCode;
+    private String productName;
+    private String productScale;
+    private String MSRP;
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setProductScale(String productScale) {
+        this.productScale = productScale;
+    }
+
+    public void setMSRP(String MSRP) {
+        this.MSRP = MSRP;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getProductScale() {
+        return productScale;
+    }
+
+    public String getMSRP() {
+        return MSRP;
+    }
+    
+    public Map<String, Object> toMap(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("productCode",this.productCode);
+        map.put("productName",this.productName);
+        map.put("productScale",this.productScale);
+        map.put("MSRP",this.MSRP);   
+        return map;
+    }
     
 }
+
+//public class CartItem {
+//    String productCode;
+//    String productName;
+//    String productScale;
+//    double MSRP;
+//    
+//    public CartItem(String productCode, String productName, String productScale, double MSRP)
+//    {
+//        this.productCode = productCode;
+//        this.productName = productName;
+//        this.productScale = productScale;
+//        this.MSRP = MSRP;
+//    }
+//
+//    public void setProductCode(String productCode) {
+//        this.productCode = productCode;
+//    }
+//
+//    public void setProductName(String productName) {
+//        this.productName = productName;
+//    }
+//
+//    public void setProductScale(String productScale) {
+//        this.productScale = productScale;
+//    }
+//
+//    public void setMSRP(double MSRP) {
+//        this.MSRP = MSRP;
+//    }
+//
+//    public String getProductCode() {
+//        return productCode;
+//    }
+//
+//    public String getProductName() {
+//        return productName;
+//    }
+//
+//    public String getProductScale() {
+//        return productScale;
+//    }
+//
+//    public double getMSRP() {
+//        return MSRP;
+//    }   
+//}

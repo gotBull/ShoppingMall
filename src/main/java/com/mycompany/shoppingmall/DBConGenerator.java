@@ -11,7 +11,7 @@ import java.sql.*;
 public class DBConGenerator {
 
     String username="root";
-    String passwd="12345";
+    String password="12345";
     String cstring = "jdbc:mariadb://127.0.0.1/webdb";
 //    這邊使用建構元是為了初始化物件(驅動程式 也就是reset), 這邊的用法是確保驅動程式能夠正確地被加載
     public DBConGenerator() {
@@ -27,10 +27,14 @@ public class DBConGenerator {
     public Connection getConnection() {
         Connection con;
         try{
-            con = DriverManager.getConnection(cstring,username,passwd);
+            con = DriverManager.getConnection(cstring,username,password);
             return con;
         } catch( Exception e) {
             return null;
         }        
     } 
+
+    Connection getConnction() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -106,7 +106,7 @@
                     {
                     shoppingUrl = "ShoppingCart.jsp?"+"pid"+rs.getString("productCode")+
                     "&pname=" + rs.getString("productName") + "&pscale=" + rs.getString("productScale")+
-                    "&price=" + rs.getString("MSRP"); 
+                    "&price=" + rs.getBigDecimal("MSRP").toString(); 
                 %>
             <tr>
               <td><%= rs.getString("productCode") %></td>
