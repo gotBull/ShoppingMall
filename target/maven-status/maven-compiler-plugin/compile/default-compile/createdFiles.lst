@@ -1,2 +1,5 @@
+com\mycompany\shoppingmall\CartItem.class
+com\mycompany\shoppingmall\CheckLogin.class
+com\mycompany\shoppingmall\DBConGenerator.class
 com\mycompany\shoppingmall\JakartaRestConfiguration.class
 com\mycompany\shoppingmall\resources\JakartaEE8Resource.class

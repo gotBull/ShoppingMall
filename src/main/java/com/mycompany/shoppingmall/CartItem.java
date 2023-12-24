@@ -8,8 +8,7 @@ package com.mycompany.shoppingmall;
  *
  * @author student
  */
-import java.util.HashMap;
-import java.util.Map;
+
 public class CartItem{
 //    private String productCode;
     private String productName;
