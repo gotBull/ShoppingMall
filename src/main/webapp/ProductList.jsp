@@ -34,19 +34,21 @@
         </style>
     </head>
     <%! 
-        Statement stmt = null;
-        String productLine = null;
+
 //        ResultSet 是 Java 中用於存放資料庫查詢結果的介面（Interface），
 //        它用來遍歷或檢索資料庫的結果。
-        java.sql.ResultSet rs = null;
-        String shoppingUrl = "#";
+        java.sql.ResultSet rs = null, chqty = null;
+        Statement stmt = null;
+        String shoppingUrl = "#", productLine = null;
+        int count = 0;
     %>
     <%
 //        擷取前面商品清單的選擇, 他不一定是數字, 如果p1是null情況, 他就會是字串, 因此先定義為字串, 後面用if去判斷如果非null再轉數字
-        String choose = request.getParameter("p1");
-        int p1Type = 0;
-        if(choose==null){ p1Type=1; }
-        else{ p1Type = Integer.parseInt(choose); }
+        String choose = request.getParameter("pl");
+        int plType=0;
+        if(choose==null){ plType=1; }
+        else{ plType = Integer.parseInt(choose); }
+
 //        選好要看的商品清單後就要去查訊資料庫
         String sql = "Select * from classicmodels.products where productLine=";
 //        將要抓資料庫的指令獨立分開, 以便之後的更改方便
@@ -54,7 +56,7 @@
         stmt = dbg.getConnection().createStatement();
 //         再來要依據選擇的清單在sql語法後面加上選擇的清單編號, 前面已經把p1的數值先轉成字串又轉回數字後放在p1Type裡面
         
-        switch(p1Type){
+        switch(plType){
             case 1 :
                 productLine = "Classic Cars";
                 sql = sql + "'"+productLine+"'";
@@ -84,11 +86,25 @@
                 sql = sql + "'"+productLine+"'";
                 break;
         }
+        String chooseQty = "Select count(*) from classicmodels.products where productLine ='"+ productLine+"';";
 //        現在我們得到了資料庫的查詢結果, 然後我們需要使用ResultSet來存放他們
-            try{ rs = stmt.executeQuery(sql); }
+            try{ rs = stmt.executeQuery(sql);
+                chqty = stmt.executeQuery(chooseQty);
+                
+                if(chqty.next())
+                {
+                    count = chqty.getInt(1);
+                }
+                chqty.close();
+        }
             catch(Exception e){}
     %>
     <body>
+        <h1>查詢<%= productLine %>的結果共<%= count %>筆</h1>
+        <h2><%= choose %></h2>
+        <button onclick="location.href='index.html'">回首頁</button>
+        <button onclick="location.href='ShoppingCart.jsp'">回到購物車</button>
+        <button onclick="location.href='CheckOut.jsp'">結帳</button>
         <table style="width:100%" id="customers">     
             <tr>
               <th>產品代號</th>
@@ -104,7 +120,7 @@
 //                    這邊re.next的寫法是確認往下是否有值,如果有就會繼續列印
                     while(rs.next())
                     {
-                    shoppingUrl = "ShoppingCart.jsp?"+"pid"+rs.getString("productCode")+
+                    shoppingUrl = "ShoppingCart.jsp?"+"pid="+rs.getString("productCode")+
                     "&pname=" + rs.getString("productName") + "&pscale=" + rs.getString("productScale")+
                     "&price=" + rs.getBigDecimal("MSRP").toString(); 
                 %>
