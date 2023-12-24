@@ -46,7 +46,7 @@
     </head>
     <%!
         Map<String,CartItem> ShopItem = null;
-        String pid=null, pname = null, pscale = null,price = null;
+        String pid, pname = null, pscale = null,price = null;
     %>
     <%
         //檢查使用者狀態
@@ -81,6 +81,7 @@
             ShopItem.put(pid, newItem);
         } 
         Map<String,CartItem> Item = (Map<String,CartItem>) session.getAttribute("cart");
+
     %>
     
     <body>
@@ -90,34 +91,45 @@
 <!--        如果使用者未登入時會跳出來提醒-->
         <% if(user == null){%>
         <p>尚未登入<button onclick="location.href='Login.jsp'">點我登入</button></p>
+        <button onclick="goBack()">回上一頁</button>
+        <button onclick="location.href='index.html'">回首頁</button>
         <% } %>
         
 <!--        判斷是否有購入商品, if內部有商品-->
         <% if( Item != null && Item.size()>0 ){ %>
-        <table>
-         <tr>
-            <th>商品編號</th>
-            <th>商品名稱</th>
-            <th>商品規格</th>
-            <th>商品價格</th>
-            <th>商品數量</th>
-          </tr>
-          <% for( String pid: Item.keySet() ){ %>
-          <tr>
-            <td><%= pid %></td>
-            <td><%= Item.get(pid).getProductName()%></td>
-            <td><%= Item.get(pid).getProductScale()%></td>
-            <td><%= Item.get(pid).getMSRP()%></td>
-            <td><%= Item.get(pid).getQuantity()%></td>
-          </tr> 
-          <% } %>
-        </table>
-        <%= ShopItem%>
-
-        <button onclick="location.href='CheckOut.jsp'">結帳</button>
+        <form action="/ShoppingMall/CheckOut.jsp">
+            <table>
+             <tr>
+                <th>商品編號</th>
+                <th>商品名稱</th>
+                <th>商品規格</th>
+                <th>商品價格</th>
+                <th>商品數量</th>
+              </tr>
+              <% for( String pid: Item.keySet() ){ %>
+              <tr>
+                <td><%= pid %></td>
+                <td><%= Item.get(pid).getProductName()%></td>
+                <td><%= Item.get(pid).getProductScale()%></td>
+                <td><%= Item.get(pid).getMSRP()%></td>
+    <!--            <td><%= Item.get(pid).getQuantity()%></td>-->
+                <td><input type="number" id="quantity" name="Quantity" value="<%= Item.get(pid).getQuantity()%>" min="1" max="10"></td>
+              </tr> 
+              <% } %>
+            </table>
+            <input type="submit" value="結帳">
+        </form>
+<!--        <button onclick="location.href='CheckOut.jsp'">結帳</button>-->
         <% }else{ %>
         <h2>此購物車是空的</h2>
-        <button onclick="location.href='ProductList.jsp'">回商品列表</button>
+        <button onclick="goBack()">回上一頁</button>
+        <button onclick="location.href='index.html'">回首頁</button>
+<!--        <button onclick="location.href='ProductList.jsp'">回商品列表</button>-->
         <% } %>
+        <script>
+            function goBack() {
+              window.history.back();
+            }
+        </script>
     </body>
 </html>
