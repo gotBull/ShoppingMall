@@ -33,11 +33,24 @@
         pscale = request.getParameter("pscale");
         price = request.getParameter("price");
         //檢查商品是否已經放入購物車
-        if(ShopItem.size()==0){
- //           CartItem citem = new CartItem(pid,pname,pscale,1); 
-            
-        }
-    
+        if (ShopItem.containsKey(pid)) {
+            // 商品已存在，取出原有CartItem
+            CartItem existingItem = ShopItem.get(pid);
+            existingItem.setQuantity(existingItem.getQuantity() + 1);
+            // 進行數量的增加或其他操作，這裡你可以自行定義
+
+            // 更新購物車中的商品
+            ShopItem.put(pid, existingItem);
+        } else {
+            // 商品不存在，新增CartItem
+            CartItem newItem = new CartItem(pname, pscale, price);
+            newItem.setProductName(pname);
+            newItem.setProductScale(pscale);
+            newItem.setMSRP(price);
+            newItem.setQuantity(1);
+            // 放入購物車
+            ShopItem.put(pid, newItem);
+        } 
     %>
     
     <body>

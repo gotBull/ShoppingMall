@@ -11,15 +11,28 @@ package com.mycompany.shoppingmall;
 import java.util.HashMap;
 import java.util.Map;
 public class CartItem{
-    private String productCode;
+//    private String productCode;
     private String productName;
     private String productScale;
     private String MSRP;
+    private int quantity;
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+//    public void setProductCode(String productCode) {
+//        this.productCode = productCode;
+//    }
+
+    public CartItem(String productName, String productScale, String MSRP) {
+        this.productName = productName;
+        this.productScale = productScale;
+        this.MSRP = MSRP;
+        this.quantity = 0;
     }
-
+    
+    public void setQuantity(int quantity) {
+    // 此處你可以進行一些數量的合法性檢查
+        this.quantity = quantity;
+    }
+    
     public void setProductName(String productName) {
         this.productName = productName;
     }
@@ -32,9 +45,9 @@ public class CartItem{
         this.MSRP = MSRP;
     }
 
-    public String getProductCode() {
-        return productCode;
-    }
+//    public String getProductCode() {
+//        return productCode;
+//    }
 
     public String getProductName() {
         return productName;
@@ -47,18 +60,19 @@ public class CartItem{
     public String getMSRP() {
         return MSRP;
     }
-    
-    public Map<String, Object> toMap(){
-        Map<String, Object> map = new HashMap<>();
-        map.put("productCode",this.productCode);
-        map.put("productName",this.productName);
-        map.put("productScale",this.productScale);
-        map.put("MSRP",this.MSRP);   
-        return map;
+    public int getQuantity() {
+        return this.quantity;
     }
+}    
+//    public Map<String, Object> toMap(){
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("productCode",this.productCode);
+//        map.put("productName",this.productName);
+//        map.put("productScale",this.productScale);
+//        map.put("MSRP",this.MSRP);   
+//        return map;
+//    }
     
-}
-
 //public class CartItem {
 //    String productCode;
 //    String productName;
